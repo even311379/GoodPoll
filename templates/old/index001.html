@@ -1,0 +1,66 @@
+<!-- index.html -->
+
+{% extends "base.html" %}
+{% block content %}
+<style>
+div.alC {
+    text-align: center;
+}
+
+div.alL {
+    text-align: left;
+}
+
+div.alR {
+    text-align: right;
+} 
+
+div.alJ {
+    text-align: justify;
+} 
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<div class='container' align='center'>
+	{% for message in messages %}
+		<div class="alert alert-{{ message.tags }}" role="alert">{{ message }}</div>
+	{% endfor %}
+
+	<div class='row'>
+		<div class='col-xl-12'>
+			<div class='card'>
+				<h3 class='card-header'>一起來投票</h3>
+			</div>
+		</div>
+	</div>
+	
+
+	
+
+      <div class="my-3 p-3 bg-white rounded shadow-sm">
+        <h6 class="border-bottom border-gray pb-2 mb-0">最新更新</h6>
+        {% for poll in polls%}
+        <div class="media text-muted pt-3">
+          <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
+          <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <strong class="d-block text-gray-dark">{{ poll.name }}</strong>
+             {{ poll.explination }}
+             <sub> added by 『{{ poll.user }}』, created at {{ poll.created_at }} </sub>
+          </p>
+      	</div>
+         {% endfor %}
+
+        <small class="d-block text-right mt-3">
+          <a href="#">All updates</a>
+        </small>
+      </div>
+
+<div class='alC'>
+	<h4>TEST1</h4>
+</div>
+<div class='alR'>
+	TEST2
+</div>
+
+</div> <!-- end of container -->
+
+{% endblock %}

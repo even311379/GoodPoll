@@ -1,0 +1,70 @@
+<!-- add_poll_item.html -->
+
+{% extends "base.html" %}
+
+{% block content %}
+<br><br><br><br><br><br>
+
+{% if username %}
+
+    <!-- Add Poll Section -->
+<div class="container">
+    <h2 class="text-center text-secondary mb-0">新增投票項目</h2>
+    <hr class="star-dark mb-5">
+    <h3 class="text-center text-secondary">{{ poll.name }}</h3>
+    <br>
+    <h4 class="text-center text-secondary">{{ poll.explination }}</h4>
+    {% if message %}
+    <div class="alert alert-warning" role="alert">{{ message }}</div>
+    {% endif %}
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+        <form name="new poll form" novalidate="novalidate" action='.' method='POST'>
+            {% csrf_token %}
+            <div class="control-group">
+                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                    <label>投票項目0 </label>
+                    <input class="form-control" name="poll_item_0" type="text" placeholder="投票項目0" required="required" data-validation-required-message="Please enter your poll item.">
+                    <p class="help-block text-danger"></p>
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                    <label>投票項目1 </label>
+                    <input class="form-control" name="poll_item_1" type="text" placeholder="投票項目1" required="required" data-validation-required-message="Please enter your poll item.">
+                    <p class="help-block text-danger"></p>
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                    <label>投票項目2 </label>
+                    <input class="form-control" name="poll_item_2" type="text" placeholder="投票項目2" required="required" data-validation-required-message="Please enter your poll item.">
+                    <p class="help-block text-danger"></p>
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                    <label>投票項目3 </label>
+                    <input class="form-control" name="poll_item_3" type="text" placeholder="投票項目3" required="required" data-validation-required-message="Please enter your poll item.">
+                    <p class="help-block text-danger"></p>
+                </div>
+            </div>
+
+
+            <br>
+            <div id="success"></div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary btn-xl" value ="提交"></input>
+            </div>
+        </form>
+        </div>
+    </div> <!-- end row -->
+</div> <!-- end container -->
+{% else %}
+
+<h3 align='center'>請先登入！</h3>
+
+{% endif %}
+
+
+{% endblock %}

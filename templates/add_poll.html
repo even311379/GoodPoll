@@ -1,0 +1,57 @@
+<!-- add_poll.html -->
+
+{% extends "base.html" %}
+
+{% block content %}
+<br><br><br><br><br><br>
+
+<h1>ADD POLL</h1>
+
+{% if username %}
+    <!-- Add Poll Section -->
+        <section id="contact">
+      <div class="container">
+        <h2 class="text-center text-uppercase text-secondary mb-0">Add New Poll</h2>
+        <hr class="star-dark mb-5">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <form name="new poll form" novalidate="novalidate" action='.' method='POST' enctype='multipart/form-data'> <!-- add enctype = 'ooxx' to make upload file success -->
+            	{% csrf_token %}
+              <div class="control-group">
+                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                  <label>Poll title</label>
+                  <input class="form-control" name="poll_title" type="text" placeholder="Poll title" required="required" data-validation-required-message="Please enter your poll title.">
+                  <p class="help-block text-danger"></p>
+                </div>
+              </div>
+              <div class="control-group">
+                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                  <label>Poll Explanation</label>
+                  <input class="form-control" name="poll_explanation" type="text" placeholder="Poll Explanation" required="required" data-validation-required-message="Please enter your Poll Explanation.">
+                  <p class="help-block text-danger"></p>
+                </div>
+              </div>
+              <div class="control-group">
+                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                  <label>Poll Logo</label>
+                  <input class="form-control" name="poll_logo" type="file" placeholder="poll logo" required="required" data-validation-required-message="Upload poll logo">
+                  <p class="help-block text-danger"></p>
+                </div>
+              </div>
+              <br>
+              <div id="success"></div>
+              <div class="form-group">
+                <input type="submit" class="btn btn-primary btn-xl" value ="提交"></input>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+{% else %}
+
+<h3 align='center'>請先登入！</h3>
+
+{% endif %}
+
+{% endblock %}

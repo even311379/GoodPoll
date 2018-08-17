@@ -1,0 +1,51 @@
+<!-- vote.html -->
+
+{% extends "base.html" %}
+
+{% block content %}
+<br><br><br><br><br><br>
+
+{% if username %}
+<section>
+<div class='row'>
+        <div class='col-xl-12'>
+            <div class='card'>
+                <div class='card-header' align=center style='font-family:微軟正黑體'>
+                    <h3>{{ poll.name }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    {% for pollitem in pollitems %}
+        {% cycle "<div class='row'>" "" "" "" %}
+            <div class='col-sm-3'>
+                <div class='card'>
+                    <div class='card-header' style='font-family:微軟正黑體'>
+                        {{ pollitem.name }}
+                    </div>
+                    <div class='card-body'>
+                        <p> An invisible poll image!</p>
+                    </div>
+                    <div class='card-footer' align=center style='font-family:微軟正黑體'>
+                            <a href='/vote/{{ pollid }}/{{ pollitem.id }}' title='VOTE!'>
+                            <i class="far fa-heart"></i>
+                            </a>
+                            &nbsp;
+                            目前票數: {{pollitem.vote}}
+                    </div>
+                </div>
+            </div>
+        {% cycle "" "" "" "</div>"%}
+    {% endfor %}
+</section>
+
+
+{% else %}
+
+<h3 align='center'>請先登入！</h3>
+
+{% endif %}
+
+
+{% endblock %}
