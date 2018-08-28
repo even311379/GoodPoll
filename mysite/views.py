@@ -100,3 +100,32 @@ def show_poll(request, id):
     pollitems = models.PollItem.objects.filter(poll=poll)
 
     return HttpResponse(render(request, '../templates/show_poll.html', locals()))
+
+
+def vote(request, pollid, pollitemid):
+
+    if request.user.is_authenticated:
+        username = request.user.username
+    try:
+        pollitem = models.PollItem.objects.get(id = pollitemid)
+    except Exception as e:
+        print(e)
+        pollitem = None
+
+    poll = models.Poll.objects.get(pk=pollid)
+    VH = models.VoteHistory.objects.filter(poll=poll,voter=str(username)).order_by('vote_time')
+
+    '''
+    Each poll can only be voted for single user per day!
+    '''
+    if not VH or (datetime.date.today() - VH[0].vote_time).days > 0:
+        if pollitem:
+            pollitem.vote += 1
+            v_history = models.VoteHistory.objects.create(poll=poll,pollitem = str(pollitem), voter=str(username))
+            v_history.save()
+            pollitem.save()
+    else:
+        print('You have voted for this poll!')
+
+    target_url = '/show_poll/' + str(pollid)
+    return HttpResponseRedirect(target_url)

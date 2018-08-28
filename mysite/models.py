@@ -23,3 +23,9 @@ class PollItem(models.Model):
 
     def __str__(self):
         return self.name
+
+class VoteHistory(models.Model):
+    poll = models.ForeignKey(Poll, on_delete=models.CASCADE)
+    pollitem = models.CharField(max_length=200, null=False)
+    voter = models.CharField(max_length=200, null=False)
+    vote_time = models.DateField(auto_now_add=True)

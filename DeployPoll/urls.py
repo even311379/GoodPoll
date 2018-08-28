@@ -28,6 +28,7 @@ urlpatterns = [
     path('add_poll/',views.add_poll,name='add_poll'),
     path('add_poll_item/<int:id>',views.add_poll_item,name='add_poll_item'),
     path('show_poll/<int:id>',views.show_poll,name='show_poll'),
+    path('vote/<int:pollid>/<int:pollitemid>', views.vote, name = 'vote'),
     path('accounts/',include('allauth.urls'))
     # path('list/',views.listing),
     # path('post/',views.posting),
